@@ -1,26 +1,37 @@
 package com.example.ztpai.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
+import java.util.UUID;
 
+@Entity
 public class Person {
-        private Integer id;
+        @GeneratedValue(strategy = GenerationType.UUID)
+        @Id
+        @Column(name = "id")
+        private UUID id;
         @NotBlank(message = "Email cannot be empty")
         @Email(message = "Invalid email format")
+        @Column(name = "email")
         private String email;
         @NotBlank(message = "Name cannot be empty")
+        @Column(name="name")
         private String name;
+        @Column(name="surname")
         private String surname;
+        @Column(name="password")
         @NotBlank(message = "Password cannot be empty")
         private String password;
+        @Column(name="phone")
         private String phone;
 
         public Person() {
         }
 
-        public Person(Integer id, String email, String name, String surname, String password, String phone) {
+        public Person(UUID id, String email, String name, String surname, String password, String phone) {
                 this.id = id;
                 this.email = email;
                 this.name = name;
@@ -29,11 +40,11 @@ public class Person {
                 this.phone = phone;
         }
 
-        public Integer getId() {
+        public UUID getId() {
                 return id;
         }
 
-        public void setId(Integer id) {
+        public void setId(UUID id) {
                 this.id = id;
         }
 
