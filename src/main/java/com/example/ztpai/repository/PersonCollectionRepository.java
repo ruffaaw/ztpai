@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class PersonCollectionRepository {
@@ -18,7 +19,7 @@ public class PersonCollectionRepository {
         return persons;
     }
 
-    public Optional<Person> findById(Integer id) {
+    public Optional<Person> findById(UUID id) {
         return persons.stream()
                 .filter(person -> person.getId().equals(id))
                 .findFirst();
@@ -28,7 +29,7 @@ public class PersonCollectionRepository {
         persons.add(person);
     }
 
-    public void deleteById(Integer id) {
+    public void deleteById(UUID id) {
         persons.removeIf(person -> person.getId().equals(id));
     }
 }

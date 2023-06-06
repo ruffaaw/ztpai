@@ -10,7 +10,7 @@ POST http://localhost:8080/api/person
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": "73e2640c-0481-11ee-be56-0242ac120002",
   "email": "harrypotter@mail.com",
   "name": "Harry",
   "surname": "Potter",
@@ -19,11 +19,11 @@ Content-Type: application/json
 }
 
 ### Update existing Person with invalid id
-PUT http://localhost:8080/api/person/2
+PUT http://localhost:8080/api/person/73e2640c-0481-11ee-be56-0242ac120002
 Content-Type: application/json
 
 {
-  "id": 2,
+  "id": "94a38e1e-0481-11ee-be56-0242ac120002",
   "email": "walterwhite@mail.com",
   "name": "Walter",
   "surname": "White",
@@ -32,4 +32,4 @@ Content-Type: application/json
 }
 
 ### Delete by id
-DELETE http://localhost:8080/api/person/1
+DELETE http://localhost:8080/api/person/73e2640c-0481-11ee-be56-0242ac120002

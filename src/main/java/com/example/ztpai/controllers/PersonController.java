@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/person")
@@ -29,7 +30,7 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Person> findById(@PathVariable Integer id) {
+    public ResponseEntity<Person> findById(@PathVariable UUID id) {
         Optional<Person> person = repository.findById(id);
         if (person.isPresent()) {
             return ResponseEntity.ok(person.get());
@@ -45,7 +46,7 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@Valid @RequestBody Person person, @PathVariable Integer id) {
+    public ResponseEntity<Void> update(@Valid @RequestBody Person person, @PathVariable UUID id) {
         Optional<Person> existingPerson = repository.findById(id);
         if (existingPerson.isPresent()) {
             repository.deleteById(id);
@@ -62,7 +63,7 @@ public class PersonController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
         Optional<Person> existingPerson = repository.findById(id);
         if (existingPerson.isPresent()) {
             repository.deleteById(id);
