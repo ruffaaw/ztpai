@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/product")
@@ -29,7 +30,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Integer id) {
+    public ResponseEntity<Product> getProductById(@PathVariable UUID id) {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()) {
             return ResponseEntity.ok(product.get());
@@ -45,7 +46,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateProduct(@Valid @RequestBody Product product, @PathVariable Integer id) {
+    public ResponseEntity<Void> updateProduct(@Valid @RequestBody Product product, @PathVariable UUID id) {
         Optional<Product> existingProduct = productRepository.findById(id);
         if (existingProduct.isPresent()) {
             productRepository.deleteById(id);
@@ -58,7 +59,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable UUID id) {
         Optional<Product> existingProduct = productRepository.findById(id);
         if (existingProduct.isPresent()) {
             productRepository.deleteById(id);

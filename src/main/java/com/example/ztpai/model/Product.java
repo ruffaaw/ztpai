@@ -1,37 +1,47 @@
 package com.example.ztpai.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
+import java.util.UUID;
 
+@Entity(name="products")
 public class Product {
-        private Integer id;
+        @GeneratedValue(strategy = GenerationType.UUID)
+        @Id
+        @Column(name = "id")
+        private UUID id;
         @NotBlank(message = "Product type cannot be empty")
+        @ManyToOne
+        @JoinColumn(name= "type")
         private ProductType productType;
         @NotBlank(message = "Name cannot be empty")
+        @Column(name="name")
         private String name;
         @NotBlank(message = "Price cannot be empty")
+        @Column(name="price")
         private Integer price;
+        @Column(name="image")
         private String image;
-        private String url;
 
         public Product() {
         }
 
-        public Product(Integer id, ProductType productType, String name, Integer price, String image, String url) {
+        public Product(UUID id, ProductType productType, String name, Integer price, String image) {
                 this.id = id;
                 this.productType = productType;
                 this.name = name;
                 this.price = price;
                 this.image = image;
-                this.url = url;
+
         }
 
-        public Integer getId() {
+        public UUID getId() {
                 return id;
         }
 
-        public void setId(Integer id) {
+        public void setId(UUID id) {
                 this.id = id;
         }
 
@@ -67,25 +77,17 @@ public class Product {
                 this.image = image;
         }
 
-        public String getUrl() {
-                return url;
-        }
-
-        public void setUrl(String url) {
-                this.url = url;
-        }
-
         @Override
         public boolean equals(Object o) {
                 if (this == o) return true;
                 if (o == null || getClass() != o.getClass()) return false;
                 Product product = (Product) o;
-                return Objects.equals(id, product.id) && productType == product.productType && Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(image, product.image) && Objects.equals(url, product.url);
+                return Objects.equals(id, product.id) && productType == product.productType && Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(image, product.image);
         }
 
         @Override
         public int hashCode() {
-                return Objects.hash(id, productType, name, price, image, url);
+                return Objects.hash(id, productType, name, price, image);
         }
 
         @Override
@@ -96,7 +98,6 @@ public class Product {
                         ", name='" + name + '\'' +
                         ", price=" + price +
                         ", image='" + image + '\'' +
-                        ", url='" + url + '\'' +
                         '}';
         }
 }

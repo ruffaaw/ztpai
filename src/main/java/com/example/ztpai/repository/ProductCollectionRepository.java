@@ -1,13 +1,12 @@
 package com.example.ztpai.repository;
 
 import com.example.ztpai.model.Product;
-import com.example.ztpai.model.ProductType;
-import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class ProductCollectionRepository {
@@ -20,7 +19,7 @@ public class ProductCollectionRepository {
         return products;
     }
 
-    public Optional<Product> findById(Integer id) {
+    public Optional<Product> findById(UUID id) {
         return products.stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst();
@@ -30,7 +29,7 @@ public class ProductCollectionRepository {
         products.add(product);
     }
 
-    public void deleteById(Integer id) {
+    public void deleteById(UUID id) {
         products.removeIf(product -> product.getId().equals(id));
     }
 
