@@ -10,40 +10,35 @@ import java.util.Optional;
 
 @Repository
 public class PersonCollectionRepository {
-    private final List<Person> personList = new ArrayList<>();
+    private final List<Person> persons = new ArrayList<>();
 
     public PersonCollectionRepository() {
+        init();
     }
 
     public List<Person> findAll() {
-        return personList;
+        return persons;
     }
 
     public Optional<Person> findById(Integer id) {
-        return personList.stream().filter(p -> p.id().equals(id)).findFirst();
+        return persons.stream()
+                .filter(person -> person.getId().equals(id))
+                .findFirst();
     }
 
     public void save(Person person) {
-        personList.removeIf(p -> p.id().equals(person.id()));
-        personList.add(person);
+        persons.add(person);
     }
 
-    @PostConstruct
+    public void deleteById(Integer id) {
+        persons.removeIf(person -> person.getId().equals(id));
+    }
+
     private void init() {
-        Person person = new Person(1,
-                "John",
-                "Snow",
-                "johnsnow",
-                "1234541231");
-        personList.add(person);
-    }
+        Person person1 = new Person(1, "john.doe@example.com", "John", "Doe", "password1", "123456789");
+        Person person2 = new Person(2, "jane.doe@example.com", "Jane", "Doe", "password2", "987654321");
 
-    public boolean existsById(Integer id) {
-        return personList.stream().filter(p -> p.id().equals(id)).count() == 1;
+        persons.add(person1);
+        persons.add(person2);
     }
-
-    public void delete(Integer id) {
-        personList.removeIf(p -> p.id().equals(id));
-    }
-
 }
