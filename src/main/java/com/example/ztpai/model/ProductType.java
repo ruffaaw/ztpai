@@ -2,6 +2,8 @@ package com.example.ztpai.model;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity(name = "products_type")
 public class ProductType {
     @Id
