@@ -1,11 +1,16 @@
 package com.example.ztpai.model;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.util.Objects;
 
 public class Product {
         private Integer id;
+        @NotBlank(message = "Product type cannot be empty")
         private ProductType productType;
+        @NotBlank(message = "Name cannot be empty")
         private String name;
+        @NotBlank(message = "Price cannot be empty")
         private Integer price;
         private String image;
         private String url;

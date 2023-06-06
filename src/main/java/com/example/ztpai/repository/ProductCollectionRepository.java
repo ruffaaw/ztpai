@@ -14,7 +14,6 @@ public class ProductCollectionRepository {
     private final List<Product> products = new ArrayList<>();
 
     public ProductCollectionRepository() {
-        init();
     }
 
     public List<Product> findAll() {
@@ -33,16 +32,6 @@ public class ProductCollectionRepository {
 
     public void deleteById(Integer id) {
         products.removeIf(product -> product.getId().equals(id));
-    }
-
-    public void init() {
-        Product product1 = new Product(1,
-                ProductType.DESKTOP,
-                "name",
-                1000,
-                "./fsdfd",
-                "");
-        products.add(product1);
     }
 
 }

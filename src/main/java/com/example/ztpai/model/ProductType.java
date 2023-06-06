@@ -1,6 +1,6 @@
 package com.example.ztpai.model;
 
-public enum Type {
+public enum ProductType {
     DESKTOP,
     LAPTOP,
     SMARTPHONE,
