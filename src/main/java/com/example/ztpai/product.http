@@ -10,26 +10,30 @@ POST http://localhost:8080/api/product
 Content-Type: application/json
 
 {
-    "id": 2,
-    "productType": "DESKTOP",
-    "name": "",
-    "price": 6000,
-    "image": "./img/komp2.png",
-    "url": ""
-  }
+  "id": "998d0fda-368e-4990-9519-0ae40dd144f9",
+  "productType": {
+    "id": 1,
+    "typename": "Laptop"
+  },
+  "name": "Laptop",
+  "price": 200,
+  "image": "laptop.jpg"
+}
 
 ### Update existing Product with invalid id
-PUT http://localhost:8080/api/product/1
+PUT http://localhost:8080/api/product/998d0fda-368e-4990-9519-0ae40dd144f9
 Content-Type: application/json
 
 {
-  "id": 1,
-  "type": "2",
-  "name": "",
-  "price": 6000,
-  "image": "./img/komp2.png",
-  "url": ""
+  "id": "100d0fda-368e-4990-9519-0ae40dd144f9",
+  "productType": {
+    "id": 2,
+    "typename": "Laptop"
+  },
+  "name": "Laptop",
+  "price": 200,
+  "image": "laptop.jpg"
 }
 
 ### Delete by id
-DELETE http://localhost:8080/api/product/2
+DELETE http://localhost:8080/api/product/998d0fda-368e-4990-9519-0ae40dd144f9

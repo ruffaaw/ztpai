@@ -1,6 +1,7 @@
 package com.example.ztpai.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
@@ -12,14 +13,13 @@ public class Product {
         @Id
         @Column(name = "id")
         private UUID id;
-        @NotBlank(message = "Product type cannot be empty")
         @ManyToOne
         @JoinColumn(name= "type")
         private ProductType productType;
         @NotBlank(message = "Name cannot be empty")
         @Column(name="name")
         private String name;
-        @NotBlank(message = "Price cannot be empty")
+        @Min(value = 0, message = "Price must be greater than or equal to 0")
         @Column(name="price")
         private Integer price;
         @Column(name="image")
