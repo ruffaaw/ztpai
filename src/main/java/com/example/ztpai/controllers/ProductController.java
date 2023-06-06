@@ -5,51 +5,66 @@ import com.example.ztpai.repository.ProductCollectionRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/product")
 @CrossOrigin
 public class ProductController {
-
-    private final ProductCollectionRepository repository;
+    private final ProductCollectionRepository productRepository;
 
     @Autowired
-    public ProductController(ProductCollectionRepository repository) {
-        this.repository = repository;
+    public ProductController(ProductCollectionRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     @GetMapping("")
-    public List<Product> findAll() {
-        return repository.findAll();
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Product findById(@PathVariable Integer id) {
-        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
-    }
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
-    public void create(@Valid @RequestBody Product product) {
-        repository.save(product);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/{id}")
-    public void update(@RequestBody Product product, @PathVariable Integer id) {
-        if (!repository.existsById(id)) {
+    public ResponseEntity<Product> getProductById(@PathVariable Integer id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            return ResponseEntity.ok(product.get());
+        } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
         }
-        repository.save(product);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PostMapping("")
+    public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product) {
+        productRepository.save(product);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateProduct(@Valid @RequestBody Product product, @PathVariable Integer id) {
+        Optional<Product> existingProduct = productRepository.findById(id);
+        if (existingProduct.isPresent()) {
+            productRepository.deleteById(id);
+            product.setId(id);
+            productRepository.save(product);
+            return ResponseEntity.noContent().build();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
+    }
+
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        repository.delete(id);
+    public ResponseEntity<Void> deleteProduct(@PathVariable Integer id) {
+        Optional<Product> existingProduct = productRepository.findById(id);
+        if (existingProduct.isPresent()) {
+            productRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
     }
 }

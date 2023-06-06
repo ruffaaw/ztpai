@@ -1,7 +1,7 @@
 package com.example.ztpai.repository;
 
 import com.example.ztpai.model.Product;
-import com.example.ztpai.model.Type;
+import com.example.ztpai.model.ProductType;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
@@ -11,42 +11,38 @@ import java.util.Optional;
 
 @Repository
 public class ProductCollectionRepository {
-    private final List<Product> productList = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
 
     public ProductCollectionRepository() {
+        init();
     }
 
     public List<Product> findAll() {
-        return productList;
+        return products;
     }
 
     public Optional<Product> findById(Integer id) {
-        return productList.stream().filter(c -> c.id().equals(id)).findFirst();
+        return products.stream()
+                .filter(product -> product.getId().equals(id))
+                .findFirst();
     }
-
-
 
     public void save(Product product) {
-        productList.removeIf(c -> c.id().equals(product.id()));
-        productList.add(product);
+        products.add(product);
     }
 
-    @PostConstruct
-    private void init() {
-        Product product = new Product(1,
-                Type.DESKTOP,
-                "Komputer gamingowy",
-                5000,
-                "./img/komp.png",
+    public void deleteById(Integer id) {
+        products.removeIf(product -> product.getId().equals(id));
+    }
+
+    public void init() {
+        Product product1 = new Product(1,
+                ProductType.DESKTOP,
+                "name",
+                1000,
+                "./fsdfd",
                 "");
-        productList.add(product);
+        products.add(product1);
     }
 
-    public boolean existsById(Integer id) {
-        return productList.stream().filter(c -> c.id().equals(id)).count() == 1;
-    }
-
-    public void delete(Integer id) {
-        productList.removeIf(c -> c.id().equals(id));
-    }
 }
