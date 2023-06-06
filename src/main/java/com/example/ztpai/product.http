@@ -1,0 +1,35 @@
+
+### Find All Products
+GET http://localhost:8080/api/product
+
+### Get Product by ID
+GET http://localhost:8080/api/product/1
+
+### Create new Product
+POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+    "id": 2,
+    "productType": "DESKTOP",
+    "name": "",
+    "price": 6000,
+    "image": "./img/komp2.png",
+    "url": ""
+  }
+
+### Update existing Product with invalid id
+PUT http://localhost:8080/api/product/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "type": "2",
+  "name": "",
+  "price": 6000,
+  "image": "./img/komp2.png",
+  "url": ""
+}
+
+### Delete by id
+DELETE http://localhost:8080/api/product/2

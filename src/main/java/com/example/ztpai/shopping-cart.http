@@ -1,0 +1,44 @@
+### FIND ALL CARTS
+GET http://localhost:8080/api/shopping-cart
+
+### FIND CART BY ID
+GET http://localhost:8080/api/shopping-cart/1
+
+### CREATE NEW CART
+POST http://localhost:8080/api/shopping-cart
+Content-Type: application/json
+
+{
+  "id": 2,
+  "products": [
+    {
+      "productId": 4,
+      "quantity": 1
+    },
+    {
+      "productId": 5,
+      "quantity": 2
+    }
+  ]
+}
+
+### Update existing Shopping Cart with invalid id
+PUT http://localhost:8080/api/shopping-cart/1
+Content-Type: application/json
+
+{
+  "id": 2,
+  "products": [
+    {
+      "productId": 1,
+      "quantity": 1
+    },
+    {
+      "productId": 1,
+      "quantity": 1
+    }
+  ]
+}
+
+### Delete by id
+DELETE http://localhost:8080/api/shopping-cart/1
