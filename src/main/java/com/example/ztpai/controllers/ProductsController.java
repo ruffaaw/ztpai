@@ -1,6 +1,6 @@
 package com.example.ztpai.controllers;
 
-import com.example.ztpai.model.Product;
+import com.example.ztpai.model.Products;
 import com.example.ztpai.repository.ProductCollectionRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +16,22 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/product")
 @CrossOrigin
-public class ProductController {
+public class ProductsController {
     private final ProductCollectionRepository productRepository;
 
     @Autowired
-    public ProductController(ProductCollectionRepository productRepository) {
+    public ProductsController(ProductCollectionRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     @GetMapping("")
-    public List<Product> getAllProducts() {
+    public List<Products> getAllProducts() {
         return productRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable UUID id) {
-        Optional<Product> product = productRepository.findById(id);
+    public ResponseEntity<Products> getProductById(@PathVariable UUID id) {
+        Optional<Products> product = productRepository.findById(id);
         if (product.isPresent()) {
             return ResponseEntity.ok(product.get());
         } else {
@@ -40,14 +40,14 @@ public class ProductController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product) {
+    public ResponseEntity<Void> createProduct(@Valid @RequestBody Products product) {
         productRepository.save(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateProduct(@Valid @RequestBody Product product, @PathVariable UUID id) {
-        Optional<Product> existingProduct = productRepository.findById(id);
+    public ResponseEntity<Void> updateProduct(@Valid @RequestBody Products product, @PathVariable UUID id) {
+        Optional<Products> existingProduct = productRepository.findById(id);
         if (existingProduct.isPresent()) {
             productRepository.deleteById(id);
             product.setId(id);
@@ -60,7 +60,7 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable UUID id) {
-        Optional<Product> existingProduct = productRepository.findById(id);
+        Optional<Products> existingProduct = productRepository.findById(id);
         if (existingProduct.isPresent()) {
             productRepository.deleteById(id);
             return ResponseEntity.noContent().build();

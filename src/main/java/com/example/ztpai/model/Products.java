@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity(name="products")
-public class Product {
+public class Products {
         @GeneratedValue(strategy = GenerationType.UUID)
         @Id
         @Column(name = "id")
@@ -25,10 +25,10 @@ public class Product {
         @Column(name="image")
         private String image;
 
-        public Product() {
+        public Products() {
         }
 
-        public Product(UUID id, ProductType productType, String name, Integer price, String image) {
+        public Products(UUID id, ProductType productType, String name, Integer price, String image) {
                 this.id = id;
                 this.productType = productType;
                 this.name = name;
@@ -81,7 +81,7 @@ public class Product {
         public boolean equals(Object o) {
                 if (this == o) return true;
                 if (o == null || getClass() != o.getClass()) return false;
-                Product product = (Product) o;
+                Products product = (Products) o;
                 return Objects.equals(id, product.id) && productType == product.productType && Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(image, product.image);
         }
 
