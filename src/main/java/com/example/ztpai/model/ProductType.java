@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.UUID;
 
-@Entity(name = "products_type")
+@Entity(name = "products-type")
 public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
