@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class ShoppingCartCollectionRepository {
@@ -20,7 +21,7 @@ public class ShoppingCartCollectionRepository {
         return shoppingCarts;
     }
 
-    public Optional<ShoppingCart> findById(Integer id) {
+    public Optional<ShoppingCart> findById(UUID id) {
         return shoppingCarts.stream()
                 .filter(cart -> cart.getId().equals(id))
                 .findFirst();
@@ -30,7 +31,7 @@ public class ShoppingCartCollectionRepository {
         shoppingCarts.add(shoppingCart);
     }
 
-    public void deleteById(Integer id) {
+    public void deleteById(UUID id) {
         shoppingCarts.removeIf(cart -> cart.getId().equals(id));
     }
 

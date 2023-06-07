@@ -1,6 +1,5 @@
 package com.example.ztpai.controllers;
 
-import com.example.ztpai.model.Product;
 import com.example.ztpai.model.ShoppingCart;
 import com.example.ztpai.repository.ShoppingCartCollectionRepository;
 import jakarta.validation.Valid;
@@ -10,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/shopping-cart")
@@ -31,7 +30,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShoppingCart> getShoppingCartById(@PathVariable int id) {
+    public ResponseEntity<ShoppingCart> getShoppingCartById(@PathVariable UUID id) {
         Optional<ShoppingCart> shoppingCart = shoppingCartRepository.findById(id);
         if(shoppingCart.isPresent()){
 
@@ -50,7 +49,7 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateShoppingCart(@PathVariable int id, @Valid @RequestBody ShoppingCart shoppingCart) {
+    public ResponseEntity<Void> updateShoppingCart(@PathVariable UUID id, @Valid @RequestBody ShoppingCart shoppingCart) {
         Optional<ShoppingCart> existingShoppingCart = shoppingCartRepository.findById(id);
         if (existingShoppingCart.isPresent()) {
             shoppingCartRepository.deleteById(id);
@@ -63,7 +62,7 @@ public class ShoppingCartController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteShoppingCart(@PathVariable int id) {
+    public ResponseEntity<Void> deleteShoppingCart(@PathVariable UUID id) {
         shoppingCartRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
