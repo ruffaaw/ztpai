@@ -9,7 +9,7 @@ POST http://localhost:8080/api/shopping-cart
 Content-Type: application/json
 
 {
-  "id": 2,
+  "id": "a276bcbb-1534-402c-8046-3510436072a7",
   "products": [
     {
       "productId": 4,
@@ -23,11 +23,11 @@ Content-Type: application/json
 }
 
 ### Update existing Shopping Cart with invalid id
-PUT http://localhost:8080/api/shopping-cart/1
+PUT http://localhost:8080/api/shopping-cart/a276bcbb-1534-402c-8046-3510436072a7
 Content-Type: application/json
 
 {
-  "id": 2,
+  "id": "a847e547-a345-4d03-84b0-26dd29342505",
   "products": [
     {
       "productId": 1,
@@ -41,4 +41,4 @@ Content-Type: application/json
 }
 
 ### Delete by id
-DELETE http://localhost:8080/api/shopping-cart/1
+DELETE http://localhost:8080/api/shopping-cart/a276bcbb-1534-402c-8046-3510436072a7
