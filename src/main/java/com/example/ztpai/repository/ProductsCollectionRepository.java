@@ -1,6 +1,6 @@
 package com.example.ztpai.repository;
 
-import com.example.ztpai.model.Product;
+import com.example.ztpai.model.Products;
 import com.example.ztpai.model.ProductType;
 import org.springframework.stereotype.Repository;
 
@@ -10,24 +10,24 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class ProductCollectionRepository {
-    private final List<Product> products = new ArrayList<>();
+public class ProductsCollectionRepository {
+    private final List<Products> products = new ArrayList<>();
 
-    public ProductCollectionRepository() {
+    public ProductsCollectionRepository() {
         init();
     }
 
-    public List<Product> findAll() {
+    public List<Products> findAll() {
         return products;
     }
 
-    public Optional<Product> findById(UUID id) {
+    public Optional<Products> findById(UUID id) {
         return products.stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst();
     }
 
-    public void save(Product product) {
+    public void save(Products product) {
         products.add(product);
     }
 
@@ -40,7 +40,7 @@ public class ProductCollectionRepository {
         productType.setId(1);
         productType.setTypename("Laptop");
 
-        Product product = new Product();
+        Products product = new Products();
         product.setId(UUID.randomUUID());
         System.out.println(product.getId());
         product.setProductType(productType);
