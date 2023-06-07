@@ -1,17 +1,14 @@
 package com.example.ztpai.controllers;
 
 import com.example.ztpai.model.Person;
-import com.example.ztpai.repository.PersonCollectionRepository;
 import com.example.ztpai.service.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController

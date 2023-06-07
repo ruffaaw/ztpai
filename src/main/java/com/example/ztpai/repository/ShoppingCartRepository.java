@@ -1,6 +1,5 @@
 package com.example.ztpai.repository;
 
-import com.example.ztpai.model.CartItem;
 import com.example.ztpai.model.ShoppingCart;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +9,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class ShoppingCartCollectionRepository {
-    public ShoppingCartCollectionRepository() {
+public class ShoppingCartRepository {
+    public ShoppingCartRepository() {
 
     }
 

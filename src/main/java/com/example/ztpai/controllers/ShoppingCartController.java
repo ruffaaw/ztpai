@@ -1,7 +1,7 @@
 package com.example.ztpai.controllers;
 
 import com.example.ztpai.model.ShoppingCart;
-import com.example.ztpai.repository.ShoppingCartCollectionRepository;
+import com.example.ztpai.repository.ShoppingCartRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,10 @@ import java.util.UUID;
 @RequestMapping("/api/shopping-cart")
 @CrossOrigin
 public class ShoppingCartController {
-    private final ShoppingCartCollectionRepository shoppingCartRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    public ShoppingCartController(ShoppingCartCollectionRepository shoppingCartRepository) {
+    public ShoppingCartController(ShoppingCartRepository shoppingCartRepository) {
         this.shoppingCartRepository = shoppingCartRepository;
     }
 

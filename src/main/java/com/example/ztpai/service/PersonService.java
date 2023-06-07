@@ -1,10 +1,9 @@
 package com.example.ztpai.service;
 
 import com.example.ztpai.model.Person;
-import com.example.ztpai.repository.PersonCollectionRepository;
+import com.example.ztpai.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -12,10 +11,10 @@ import java.util.UUID;
 @Service
 public class PersonService {
 
-    private final PersonCollectionRepository personCollectionRepository;
+    private final PersonRepository personCollectionRepository;
 
 
-    public PersonService(PersonCollectionRepository personCollectionRepository) {
+    public PersonService(PersonRepository personCollectionRepository) {
         this.personCollectionRepository = personCollectionRepository;
     }
 

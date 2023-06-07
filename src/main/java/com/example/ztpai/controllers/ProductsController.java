@@ -1,7 +1,7 @@
 package com.example.ztpai.controllers;
 
 import com.example.ztpai.model.Products;
-import com.example.ztpai.repository.ProductsCollectionRepository;
+import com.example.ztpai.repository.ProductsRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,24 +14,25 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api/products")
 @CrossOrigin
 public class ProductsController {
-    private final ProductsCollectionRepository productRepository;
+    private final ProductsRepository productsRepository;
 
     @Autowired
-    public ProductsController(ProductsCollectionRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductsController(ProductsRepository productRepository) {
+        this.productsRepository = productRepository;
     }
 
     @GetMapping("")
-    public List<Products> getAllProducts() {
-        return productRepository.findAll();
+    public ResponseEntity<List<Products>> getAllProducts() {
+        List<Products> productList = productsRepository.findAll();
+        return ResponseEntity.ok(productList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Products> getProductById(@PathVariable UUID id) {
-        Optional<Products> product = productRepository.findById(id);
+        Optional<Products> product = productsRepository.findById(id);
         if (product.isPresent()) {
             return ResponseEntity.ok(product.get());
         } else {
@@ -40,32 +41,31 @@ public class ProductsController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Void> createProduct(@Valid @RequestBody Products product) {
-        productRepository.save(product);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<Products> createProduct(@RequestBody Products product) {
+        Products createdProduct = productsRepository.save(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateProduct(@Valid @RequestBody Products product, @PathVariable UUID id) {
-        Optional<Products> existingProduct = productRepository.findById(id);
-        if (existingProduct.isPresent()) {
-            productRepository.deleteById(id);
-            product.setId(id);
-            productRepository.save(product);
-            return ResponseEntity.noContent().build();
+    public ResponseEntity<Products> updateProduct(@PathVariable UUID id, @RequestBody Products updatedProduct) {
+        Optional<Products> product = productsRepository.findById(id);
+        if (product.isPresent()) {
+            updatedProduct.setId(id);
+            Products savedProduct = productsRepository.save(updatedProduct);
+            return ResponseEntity.ok(savedProduct);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+            return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable UUID id) {
-        Optional<Products> existingProduct = productRepository.findById(id);
-        if (existingProduct.isPresent()) {
-            productRepository.deleteById(id);
+        Optional<Products> product = productsRepository.findById(id);
+        if (product.isPresent()) {
+            productsRepository.delete(product.get());
             return ResponseEntity.noContent().build();
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+            return ResponseEntity.notFound().build();
         }
     }
 }
