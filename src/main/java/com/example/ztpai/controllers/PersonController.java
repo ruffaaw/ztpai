@@ -2,6 +2,7 @@ package com.example.ztpai.controllers;
 
 import com.example.ztpai.model.Person;
 import com.example.ztpai.repository.PersonCollectionRepository;
+import com.example.ztpai.service.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,59 +18,53 @@ import java.util.UUID;
 @RequestMapping("/api/person")
 @CrossOrigin
 public class PersonController {
-    private final PersonCollectionRepository repository;
+
+    private final PersonService personService;
 
     @Autowired
-    public PersonController(PersonCollectionRepository repository) {
-        this.repository = repository;
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
 
     @GetMapping("")
-    public List<Person> findAll() {
-        return repository.findAll();
+    public ResponseEntity<List<Person>> getAllPersons() {
+        List<Person> persons = personService.getAllPersons();
+        return ResponseEntity.ok(persons);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Person> findById(@PathVariable UUID id) {
-        Optional<Person> person = repository.findById(id);
-        if (person.isPresent()) {
-            return ResponseEntity.ok(person.get());
+    public ResponseEntity<Person> getPersonById(@PathVariable UUID id) {
+        Person person = personService.getPersonById(id);
+        if (person != null) {
+            return ResponseEntity.ok(person);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Person not found");
+            return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping("")
-    public ResponseEntity<Void> create(@Valid @RequestBody Person person) {
-        repository.save(person);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<Person> createPerson(@Valid @RequestBody Person person) {
+        Person createdPerson = personService.createPerson(person);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPerson);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@Valid @RequestBody Person person, @PathVariable UUID id) {
-        Optional<Person> existingPerson = repository.findById(id);
-        if (existingPerson.isPresent()) {
-            repository.deleteById(id);
-
-            person.setId(id);
-            repository.save(person);
-
-            return ResponseEntity.noContent().build();
+    public ResponseEntity<Person> updatePerson(@Valid @RequestBody Person person, @PathVariable UUID id) {
+        Person updatedPerson = personService.updatePerson(id, person);
+        if (updatedPerson != null) {
+            return ResponseEntity.ok(updatedPerson);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Person not found");
+            return ResponseEntity.notFound().build();
         }
     }
 
-
-
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        Optional<Person> existingPerson = repository.findById(id);
-        if (existingPerson.isPresent()) {
-            repository.deleteById(id);
+    public ResponseEntity<Void> deletePerson(@PathVariable UUID id) {
+        boolean deleted = personService.deletePerson(id);
+        if (deleted) {
             return ResponseEntity.noContent().build();
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Person not found");
+            return ResponseEntity.notFound().build();
         }
     }
 }
