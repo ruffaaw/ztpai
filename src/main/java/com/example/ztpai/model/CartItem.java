@@ -1,6 +1,12 @@
 package com.example.ztpai.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity(name="cart-item")
 public class CartItem {
+    @Id
     Integer productId;
     Integer quantity;
 
