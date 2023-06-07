@@ -1,11 +1,7 @@
 package com.example.ztpai;
 
-import com.example.ztpai.model.Product;
+import com.example.ztpai.model.Products;
 import com.example.ztpai.model.ProductType;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class JpaProductsTest {
 
-    private Product product;
+    private Products product;
 
     @BeforeEach
     public void setUp() {
-        product = new Product();
+        product = new Products();
     }
 
     @Test
