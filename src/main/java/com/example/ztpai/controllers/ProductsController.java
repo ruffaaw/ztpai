@@ -1,7 +1,7 @@
 package com.example.ztpai.controllers;
 
 import com.example.ztpai.model.Products;
-import com.example.ztpai.repository.ProductCollectionRepository;
+import com.example.ztpai.repository.ProductsCollectionRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,10 @@ import java.util.UUID;
 @RequestMapping("/api/product")
 @CrossOrigin
 public class ProductsController {
-    private final ProductCollectionRepository productRepository;
+    private final ProductsCollectionRepository productRepository;
 
     @Autowired
-    public ProductsController(ProductCollectionRepository productRepository) {
+    public ProductsController(ProductsCollectionRepository productRepository) {
         this.productRepository = productRepository;
     }
 
