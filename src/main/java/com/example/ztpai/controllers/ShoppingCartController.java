@@ -2,10 +2,9 @@ package com.example.ztpai.controllers;
 
 import com.example.ztpai.model.CartItem;
 import com.example.ztpai.model.ShoppingCart;
-import com.example.ztpai.repository.ShoppingCartRepository;
 import com.example.ztpai.service.ShoppingCartService;
-import exceptions.CartItemNotFoundException;
-import exceptions.ShoppingCartNotFoundException;
+import com.example.ztpai.exceptions.CartItemNotFoundException;
+import com.example.ztpai.exceptions.ShoppingCartNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +14,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController

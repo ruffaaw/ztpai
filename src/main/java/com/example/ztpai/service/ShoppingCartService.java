@@ -6,8 +6,8 @@ import com.example.ztpai.model.ShoppingCart;
 import com.example.ztpai.repository.CartItemRepository;
 import com.example.ztpai.repository.ProductsRepository;
 import com.example.ztpai.repository.ShoppingCartRepository;
-import exceptions.CartItemNotFoundException;
-import exceptions.ShoppingCartNotFoundException;
+import com.example.ztpai.exceptions.CartItemNotFoundException;
+import com.example.ztpai.exceptions.ShoppingCartNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

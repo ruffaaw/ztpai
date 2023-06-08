@@ -1,4 +1,4 @@
-package exceptions;
+package com.example.ztpai.exceptions;
 
 public class CartItemNotFoundException extends RuntimeException {
     public CartItemNotFoundException(String message) {
