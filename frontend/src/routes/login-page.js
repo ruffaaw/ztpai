@@ -10,6 +10,7 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowPassword = (e) => {
+    console.log(showPassword);
     e.preventDefault();
     setShowPassword(!showPassword);
   };
@@ -31,14 +32,14 @@ function LoginPage() {
           <div className="inputDatePassword">
             <input
               className="password"
-              type={showPassword ? "password" : "text"}
+              type={showPassword ? "text" : "password"}
               placeholder="password"
             />
             <button className="eyeButton" onClick={handleShowPassword}>
               {showPassword ? (
-                <FontAwesomeIcon icon={faEyeSlash} />
-              ) : (
                 <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} />
               )}
             </button>
           </div>
