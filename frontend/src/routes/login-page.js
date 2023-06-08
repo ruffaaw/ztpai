@@ -4,7 +4,12 @@ import React, { useState } from "react";
 import logo from "../img/logos/logo.svg";
 import "../css/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEyeSlash,
+  faEye,
+  faEnvelope,
+  faLock,
+} from "@fortawesome/free-solid-svg-icons";
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,11 +23,14 @@ function LoginPage() {
   return (
     <div className="container">
       <div className="logoContainer">
-        <img src={logo}></img>
+        <img src={logo} alt="Logo" />
       </div>
       <div className="loginPanel">
         <form>
           <div className="inputDateEmail">
+            <div className="envelopeMail">
+              <FontAwesomeIcon icon={faEnvelope} />
+            </div>
             <input
               className="email"
               type="text"
@@ -30,6 +38,9 @@ function LoginPage() {
             />
           </div>
           <div className="inputDatePassword">
+            <div className="lockPassword">
+              <FontAwesomeIcon icon={faLock} />
+            </div>
             <input
               className="password"
               type={showPassword ? "text" : "password"}
