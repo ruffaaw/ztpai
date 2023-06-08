@@ -14,15 +14,15 @@ import java.util.UUID;
 public class ShoppingCart {
     @Id
     private UUID id;
-    @OneToMany(cascade = CascadeType.ALL)
-    private ArrayList<CartItem> products;
+    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL)
+    private List<CartItem> cartItems;
 
     public ShoppingCart() {
     }
 
-    public ShoppingCart(UUID id, ArrayList<CartItem> products) {
+    public ShoppingCart(UUID id, List<CartItem> cartItems) {
         this.id = id;
-        this.products = new ArrayList<>(products);
+        this.cartItems = new ArrayList<>(cartItems);
     }
 
     public UUID getId() {
@@ -33,32 +33,11 @@ public class ShoppingCart {
         this.id = id;
     }
 
-    public List<CartItem> getProducts() {
-        return products;
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setProducts(ArrayList<CartItem> products) {
-        this.products = products;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ShoppingCart that = (ShoppingCart) o;
-        return Objects.equals(id, that.id) && Objects.equals(products, that.products);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, products);
-    }
-
-    @Override
-    public String toString() {
-        return "ShoppingCart{" +
-                "id=" + id +
-                ", products=" + products +
-                '}';
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 }
