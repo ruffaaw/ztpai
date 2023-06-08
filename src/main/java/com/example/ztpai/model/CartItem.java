@@ -3,6 +3,7 @@ package com.example.ztpai.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity(name="cart-item")
@@ -60,5 +61,18 @@ public class CartItem {
 
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CartItem cartItem = (CartItem) o;
+        return Objects.equals(cartItemsId, cartItem.cartItemsId) && Objects.equals(products, cartItem.products) && Objects.equals(quantity, cartItem.quantity) && Objects.equals(shoppingCart, cartItem.shoppingCart);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cartItemsId, products, quantity, shoppingCart);
     }
 }

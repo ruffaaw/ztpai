@@ -40,4 +40,19 @@ public class ShoppingCart {
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShoppingCart that = (ShoppingCart) o;
+        return Objects.equals(id, that.id) && Objects.equals(cartItems, that.cartItems);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cartItems);
+    }
 }
+
+

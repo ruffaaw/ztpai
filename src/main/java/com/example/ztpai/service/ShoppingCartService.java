@@ -8,6 +8,7 @@ import com.example.ztpai.repository.ProductsRepository;
 import com.example.ztpai.repository.ShoppingCartRepository;
 import exceptions.CartItemNotFoundException;
 import exceptions.ShoppingCartNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,5 +92,19 @@ public class ShoppingCartService {
             shoppingCartRepository.save(shoppingCart);
             return newCartItem;
         }
+    }
+
+    public void removeCartItem(UUID cartId, UUID itemId) throws ShoppingCartNotFoundException, CartItemNotFoundException {
+        ShoppingCart shoppingCart = shoppingCartRepository.findById(cartId)
+                .orElseThrow(() -> new ShoppingCartNotFoundException("Shopping cart not found"));
+
+        CartItem cartItem = shoppingCart.getCartItems()
+                .stream()
+                .filter(item -> item.getCartItemsId().equals(itemId))
+                .findFirst()
+                .orElseThrow(() -> new CartItemNotFoundException("Cart item not found"));
+
+        shoppingCart.getCartItems().remove(cartItem);
+        cartItemRepository.delete(cartItem);
     }
 }

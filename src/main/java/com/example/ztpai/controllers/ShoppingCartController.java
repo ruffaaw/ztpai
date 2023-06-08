@@ -83,4 +83,14 @@ public class ShoppingCartController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Shopping cart not found", e);
         }
     }
+
+    @DeleteMapping("/{cartId}/delete-item/{itemId}")
+    public ResponseEntity<String> removeCartItem(@PathVariable UUID cartId, @PathVariable UUID itemId) {
+        try {
+            shoppingCartService.removeCartItem(cartId, itemId);
+            return ResponseEntity.ok("Cart item removed successfully.");
+        } catch (ShoppingCartNotFoundException | CartItemNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
