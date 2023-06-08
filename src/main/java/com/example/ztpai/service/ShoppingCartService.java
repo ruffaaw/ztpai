@@ -8,7 +8,6 @@ import com.example.ztpai.repository.ProductsRepository;
 import com.example.ztpai.repository.ShoppingCartRepository;
 import exceptions.CartItemNotFoundException;
 import exceptions.ShoppingCartNotFoundException;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,20 +69,17 @@ public class ShoppingCartService {
         Products product = productsRepository.findById(cartItem.getProducts().getId())
                 .orElseThrow(() -> new CartItemNotFoundException("Product not found"));
 
-        // Sprawdź, czy już istnieje CartItem dla danego produktu w koszyku
         CartItem existingCartItem = shoppingCart.getCartItems().stream()
                 .filter(item -> item.getProducts().getId().equals(product.getId()))
                 .findFirst()
                 .orElse(null);
 
         if (existingCartItem != null) {
-            // Jeżeli CartItem dla danego produktu już istnieje, dodaj do niego ilość
             int newQuantity = existingCartItem.getQuantity() + cartItem.getQuantity();
             existingCartItem.setQuantity(newQuantity);
             cartItemRepository.save(existingCartItem);
             return existingCartItem;
         } else {
-            // Jeżeli CartItem dla danego produktu nie istnieje, stwórz nowy
             CartItem newCartItem = new CartItem();
             newCartItem.setProducts(product);
             newCartItem.setQuantity(cartItem.getQuantity());

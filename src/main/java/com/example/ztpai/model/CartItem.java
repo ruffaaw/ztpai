@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
 
-@Entity(name="cart-item")
+@Entity(name = "cart-item")
 public class CartItem {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Id
@@ -14,7 +14,7 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Products products;
-    @Column(name="quantity")
+    @Column(name = "quantity")
     private Integer quantity;
     @ManyToOne
     @JoinColumn(name = "shopping_cart_id")
