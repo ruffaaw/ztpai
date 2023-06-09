@@ -1,0 +1,160 @@
+/** @format */
+body {
+  font-family: "Open Sans";
+  background-color: #fcfcfc;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  flex-direction: row;
+  align-items: center;
+  width: 100vw;
+}
+
+.logoContainer {
+  display: flex;
+  text-align: center;
+  width: 500px;
+  height: 500px;
+  left: 148px;
+  top: 232px;
+}
+
+.signUpPanel {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 400px;
+  height: 550px;
+  left: 879px;
+  top: 298px;
+
+  background: #e6000c;
+  border-radius: 43px;
+  margin-left: 300px;
+}
+
+.inputDateEmail,
+.inputDatePassword,
+.inputDateName,
+.inputDateSurname,
+.inputDateConfirmPassword,
+.inputDatePhone {
+  display: flex;
+  width: 300px;
+  height: 41px;
+  left: 964px;
+  top: 393px;
+
+  background: #d9d9d9;
+  border: 1px solid #000000;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: flex-start;
+  border: 0;
+  margin-bottom: 30px;
+}
+
+.envelopeMail,
+.lockPassword,
+.userName,
+.userSurname,
+.lockConfirmPassword,
+.mobilePhone {
+  border: 0px;
+  background-color: #d9d9d9;
+  color: #797676;
+  margin-left: 10px;
+}
+
+.email,
+.password,
+.name,
+.surname,
+.confirmPassword,
+.phone {
+  width: 225px;
+  margin-left: 10px;
+  background-color: #d9d9d9;
+  border: 0;
+  height: 20px;
+  outline: none;
+}
+
+.eyeButton {
+  border: 0px;
+  background-color: #d9d9d9;
+  color: #797676;
+}
+
+.loginButton,
+.signUpButton {
+  width: 120px;
+  height: 30px;
+  background-color: #fcfcfc;
+  color: #e6000c;
+  border: 0;
+  border-radius: 30px;
+}
+
+input::placeholder {
+  color: #797676;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.loginButton {
+  margin-right: 20px;
+}
+
+.inputDatePassword.error,
+.inputDateConfirmPassword.error {
+  border: 4px solid yellow;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .logoContainer,
+  .logoContainer > img {
+    width: 300px;
+    height: 300px;
+    margin-top: -20px;
+  }
+
+  .signUpPanel {
+    width: 350px;
+    height: 500px;
+    margin-left: 0;
+    margin-bottom: 30px;
+  }
+
+  .inputDateEmail,
+  .inputDatePassword,
+  .inputDateName,
+  .inputDateSurname,
+  .inputDateConfirmPassword,
+  .inputDatePhone {
+    margin-bottom: 25px;
+  }
+}
