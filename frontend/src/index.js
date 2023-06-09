@@ -3,8 +3,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
 import LoginPage from "./routes/login-page";
+import SignUpPage from "./routes/signup-page";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,6 +12,7 @@ root.render(
     <Routes>
       <Route path="/" element={<LoginPage />}></Route>
       <Route path="/login" element={<LoginPage />}></Route>
+      <Route path="/signup" element={<SignUpPage />}></Route>
     </Routes>
   </BrowserRouter>
 );
