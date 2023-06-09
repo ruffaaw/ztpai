@@ -1,6 +1,6 @@
 /** @format */
 body {
-  font-family: "Open Sans";
+  font-family: "Segoe UI";
   background-color: #fcfcfc;
   height: 100vh;
   width: 100%;
@@ -10,7 +10,7 @@ body {
   place-items: center;
 }
 
-.container {
+.loginMaincontainer {
   display: flex;
   justify-content: center;
   margin: 0 auto;
