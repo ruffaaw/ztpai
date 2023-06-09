@@ -1,0 +1,150 @@
+/** @format */
+
+body {
+  font-family: "Segoe UI";
+}
+
+.logoNameContainer {
+  width: 395px;
+  height: 75px;
+  left: 14px;
+  top: 39px;
+}
+
+.headerBarContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 130px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo {
+  margin-left: 14px;
+}
+
+.deliveryInformation > label {
+  font-size: 18px;
+}
+
+.truckIcon {
+  font-size: 20px;
+}
+
+.deliveryInformation {
+  display: flex;
+  align-items: center;
+  margin-left: 350px;
+  animation: slideRight 2s infinite alternate linear;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
+
+.searchProduct {
+  display: flex;
+  width: 300px;
+  height: 48px;
+  left: 881px;
+  top: 53px;
+  background: #d0d0d0;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 300px;
+}
+
+.search {
+  width: 260px;
+  height: 35px;
+  border: 0;
+  background-color: #d0d0d0;
+  outline: none;
+}
+
+.shoppingCartButton,
+.logoutButton {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  background-color: #fcfcfc;
+  border: 0;
+  padding: 0;
+}
+
+.shoppingCartButton {
+  margin-left: 100px;
+}
+
+.logoutButton {
+  margin-left: 30px;
+}
+
+.icon {
+  font-size: 25px;
+}
+
+.categoriesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 300px;
+  height: 250px;
+  background-color: #d9d9d9;
+  border-radius: 27px;
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.categoriesProducts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.categoriesIcon {
+  font-size: 25px;
+  margin-left: 40px;
+}
+
+.categoriesLabel {
+  font-size: 30px;
+  margin-left: 5px;
+}
+
+.categoriesProductsIcon {
+  font-size: 20px;
+  margin-left: 55px;
+}
+
+.categoriesProductsLabel {
+  font-size: 25px;
+  margin-left: 5px;
+  text-align: left;
+}
+
+.categoriesButton {
+  border: 0;
+  width: 150px;
+  background-color: #d9d9d9;
+  margin-top: 15px;
+}
