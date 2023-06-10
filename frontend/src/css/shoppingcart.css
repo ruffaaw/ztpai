@@ -1,0 +1,81 @@
+/** @format */
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.shoppingCartContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 30px;
+  height: 100vh;
+}
+
+.headerContainer {
+  display: flex;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 130px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.cartItemDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  align-items: center;
+}
+
+.cartDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartDetails > p {
+  margin: 0;
+}
+
+.price {
+  color: red;
+}
+
+.product {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.trash > button {
+  border: 0;
+  background-color: #fcfcfc;
+}
+
+.trashIcon {
+  font-size: 15px;
+}
+
+.cartItems > p {
+  color: red;
+  font-size: 25px;
+}
