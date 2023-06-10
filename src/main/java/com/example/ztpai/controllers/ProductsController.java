@@ -68,4 +68,10 @@ public class ProductsController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/type/{typeId}")
+    public ResponseEntity<List<Products>> getProductsByTypeId(@PathVariable Integer typeId) {
+        List<Products> productList = productsRepository.findByProductType_Id(typeId);
+        return ResponseEntity.ok(productList);
+    }
 }

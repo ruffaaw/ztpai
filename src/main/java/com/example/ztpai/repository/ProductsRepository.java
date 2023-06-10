@@ -12,4 +12,6 @@ import java.util.UUID;
 
 @Repository
 public interface ProductsRepository extends JpaRepository<Products, UUID> {
+    List<Products> findByProductType_Id(Integer typeId);
+
 }
