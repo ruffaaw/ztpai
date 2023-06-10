@@ -9,9 +9,14 @@ import {
   faCartShopping,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 function HeaderBar() {
-  const isMovingRight = true;
+  const navigate = useNavigate();
+
+  const handleShoppingCartClick = () => {
+    navigate(`/shoppingcart`);
+  };
   return (
     <div className="headerBarContainer">
       <div className="logo">
@@ -24,7 +29,7 @@ function HeaderBar() {
       <div className="searchProduct">
         <input className="search" placeholder="search..." />
       </div>
-      <button className="shoppingCartButton">
+      <button className="shoppingCartButton" onClick={handleShoppingCartClick}>
         <FontAwesomeIcon className="icon" icon={faCartShopping} />
       </button>
       <button className="logoutButton">
