@@ -43,7 +43,7 @@ function SignUpPage() {
   };
 
   return (
-    <div className="container">
+    <div className="signUpMainContainer">
       <div className="logoContainer">
         <img src={logo} alt="Logo" />
       </div>
