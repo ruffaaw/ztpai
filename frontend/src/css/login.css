@@ -118,7 +118,14 @@ input::placeholder {
   margin-right: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+  .loginMaincontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
   .container {
     flex-direction: column;
     align-items: center;

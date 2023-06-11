@@ -76,3 +76,29 @@ body {
   font-size: 15px;
   width: 120px;
 }
+
+.productItem > img {
+  width: 200px;
+  height: 200px;
+}
+
+@media (max-width: 600px) {
+  .productsMainContainer {
+    width: 100vw;
+    height: 100vh;
+    margin-left: 10px;
+  }
+
+  .mainContainer {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+  }
+
+  .productsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

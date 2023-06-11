@@ -24,6 +24,11 @@ body {
   margin-left: 14px;
 }
 
+.logo > button {
+  background-color: #fcfcfc;
+  border: 0;
+}
+
 .deliveryInformation > label {
   font-size: 18px;
 }
@@ -147,4 +152,36 @@ body {
   width: 150px;
   background-color: #d9d9d9;
   margin-top: 15px;
+}
+
+@media (max-width: 600px) {
+  .deliveryInformation,
+  .searchProduct {
+    display: none;
+  }
+
+  .categoriesContainer {
+    width: 200px;
+    height: 160px;
+  }
+
+  .categoriesLabel {
+    font-size: 15px;
+  }
+
+  .categoriesIcon {
+    font-size: 15px;
+  }
+
+  .categoriesProductsLabel {
+    font-size: 14px;
+  }
+
+  .categoriesProductsIcon {
+    font-size: 14px;
+  }
+
+  .categoriesButton {
+    width: 100px;
+  }
 }

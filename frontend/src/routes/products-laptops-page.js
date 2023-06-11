@@ -31,7 +31,7 @@ function ProductsLaptopsPage() {
         <div className="productsContainer">
           {products.map((product) => (
             <div key={product.id} className="productItem">
-              {/* <img src={require(product.image)} alt={product.name} /> */}
+              <img src={product.image} alt={product.name} />
               {console.log(product.image)}
               <h3>{product.name}</h3>
               <p>{product.price} PLN</p>

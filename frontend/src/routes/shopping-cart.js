@@ -50,9 +50,12 @@ function ShoppingCart() {
         ) : (
           cartItems.map((item) => (
             <div key={item.cartItemsId} className="cartItemDetails">
-              <h3>{item.products.name}</h3>
               <div className="product">
+                <div className="image">
+                  <img src={item.products.image} alt={item.products.name} />
+                </div>
                 <div className="cartDetails">
+                  <h3>{item.products.name}</h3>
                   <p>Quantity: {item.quantity}</p>
                   <p className="price">Price: {item.products.price} PLN</p>
                 </div>

@@ -34,7 +34,6 @@ function ProductsPage() {
         cartItemRequest
       )
       .then((response) => {
-        // Przetwórz odpowiedź po dodaniu przedmiotu do koszyka
         console.log("Item added to cart:", response.data);
       })
       .catch((error) => {
@@ -54,7 +53,7 @@ function ProductsPage() {
         <div className="productsContainer">
           {products.map((product) => (
             <div key={product.id} className="productItem">
-              {/* <img src={require(product.image)} alt={product.name} /> */}
+              <img src={product.image} alt={product.name} />
               {console.log(product.image)}
               <h3>{product.name}</h3>
               <p>{product.price} PLN</p>
