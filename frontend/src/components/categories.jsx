@@ -13,12 +13,10 @@ import {
 import { useNavigate } from "react-router-dom";
 
 function Categories() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate();
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    navigate(`/products/${selectedCategory}`);
+    navigate(`/products/${category}`);
   };
 
   return (

@@ -14,13 +14,19 @@ import { useNavigate } from "react-router-dom";
 function HeaderBar() {
   const navigate = useNavigate();
 
-  const handleShoppingCartClick = () => {
+  const handleGoToShoppingCart = () => {
     navigate(`/shoppingcart`);
+  };
+
+  const handleGoToProducts = () => {
+    navigate(`/products`);
   };
   return (
     <div className="headerBarContainer">
       <div className="logo">
-        <Logo />
+        <button onClick={handleGoToProducts}>
+          <Logo />
+        </button>
       </div>
       <div className="deliveryInformation">
         <FontAwesomeIcon className="truckIcon" icon={faTruck} />
@@ -29,7 +35,7 @@ function HeaderBar() {
       <div className="searchProduct">
         <input className="search" placeholder="search..." />
       </div>
-      <button className="shoppingCartButton" onClick={handleShoppingCartClick}>
+      <button className="shoppingCartButton" onClick={handleGoToShoppingCart}>
         <FontAwesomeIcon className="icon" icon={faCartShopping} />
       </button>
       <button className="logoutButton">
