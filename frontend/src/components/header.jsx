@@ -21,6 +21,10 @@ function HeaderBar() {
   const handleGoToProducts = () => {
     navigate(`/products`);
   };
+
+  const handleGoToLogin = () => {
+    navigate(`/login`);
+  };
   return (
     <div className="headerBarContainer">
       <div className="logo">
@@ -38,7 +42,7 @@ function HeaderBar() {
       <button className="shoppingCartButton" onClick={handleGoToShoppingCart}>
         <FontAwesomeIcon className="icon" icon={faCartShopping} />
       </button>
-      <button className="logoutButton">
+      <button className="logoutButton" onClick={handleGoToLogin}>
         <FontAwesomeIcon className="icon" icon={faRightFromBracket} />
       </button>
     </div>
