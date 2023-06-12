@@ -1,0 +1,39 @@
+
+### Find All Products
+GET http://localhost:8080/api/product
+
+### Get Product by ID
+GET http://localhost:8080/api/product/1
+
+### Create new Product
+POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+  "id": "998d0fda-368e-4990-9519-0ae40dd144f9",
+  "productType": {
+    "id": 1,
+    "typename": "Laptop"
+  },
+  "name": "Laptop",
+  "price": 200,
+  "image": "laptop.jpg"
+}
+
+### Update existing Product with invalid id
+PUT http://localhost:8080/api/product/998d0fda-368e-4990-9519-0ae40dd144f9
+Content-Type: application/json
+
+{
+  "id": "100d0fda-368e-4990-9519-0ae40dd144f9",
+  "productType": {
+    "id": 2,
+    "typename": "Laptop"
+  },
+  "name": "Laptop",
+  "price": 200,
+  "image": "laptop.jpg"
+}
+
+### Delete by id
+DELETE http://localhost:8080/api/product/998d0fda-368e-4990-9519-0ae40dd144f9
