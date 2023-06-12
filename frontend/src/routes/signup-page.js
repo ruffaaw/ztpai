@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import logo from "../img/logos/logo.svg";
 import "../css/signup.css";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEyeSlash,
@@ -12,22 +13,70 @@ import {
   faUser,
   faMobile,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+  const navigate = useNavigate();
+
+  const handleCategoryClick = () => {
+    navigate(`/login`);
+  };
 
   const handleShowPassword = (e) => {
     e.preventDefault();
     setShowPassword(!showPassword);
   };
 
+  const handleSignUp = async () => {
+    if (!passwordsMatch) {
+      alert("Password or password confirmation is incorrect. Please try again");
+      return;
+    }
+
+    const userData = {
+      email: email,
+      name: name,
+      surname: surname,
+      password: password,
+      phone: phone,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/person",
+        userData
+      );
+      navigate(`/login`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleShowConfirmPassword = (e) => {
     e.preventDefault();
     setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleSurnameChange = (e) => {
+    setSurname(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -40,6 +89,10 @@ function SignUpPage() {
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
     setPasswordsMatch(e.target.value === password);
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
   };
 
   return (
@@ -57,19 +110,33 @@ function SignUpPage() {
               className="email"
               type="text"
               placeholder="email@email.com"
+              value={email}
+              onChange={handleEmailChange}
             />
           </div>
           <div className="inputDateName">
             <div className="userName">
               <FontAwesomeIcon icon={faUser} />
             </div>
-            <input className="name" type="text" placeholder="name" />
+            <input
+              className="name"
+              type="text"
+              placeholder="name"
+              value={name}
+              onChange={handleNameChange}
+            />
           </div>
           <div className="inputDateSurname">
             <div className="userSurname">
               <FontAwesomeIcon icon={faUser} />
             </div>
-            <input className="surname" type="text" placeholder="surname" />
+            <input
+              className="surname"
+              type="text"
+              placeholder="surname"
+              value={surname}
+              onChange={handleSurnameChange}
+            />
           </div>
           <div
             className={`inputDatePassword ${!passwordsMatch ? "error" : ""}`}
@@ -117,13 +184,27 @@ function SignUpPage() {
             <div className="mobilePhone">
               <FontAwesomeIcon icon={faMobile} />
             </div>
-            <input className="phone" type="text" placeholder="phone" />
+            <input
+              className="phone"
+              type="text"
+              placeholder="phone"
+              value={phone}
+              onChange={handlePhoneChange}
+            />
           </div>
           <div className="buttons">
-            <button className="loginButton" type="submit">
+            <button
+              className="loginButton"
+              type="submit"
+              onClick={handleCategoryClick}
+            >
               LOGIN
             </button>
-            <button className="signUpButton" type="submit">
+            <button
+              className="signUpButton"
+              type="submit"
+              onClick={handleSignUp}
+            >
               SIGN UP
             </button>
           </div>

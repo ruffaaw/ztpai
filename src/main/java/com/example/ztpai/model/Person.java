@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(name = "person", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Person {
         @GeneratedValue(strategy = GenerationType.UUID)
         @Id
@@ -17,7 +18,6 @@ public class Person {
         @Email(message = "Invalid email format")
         @Column(name = "email")
         private String email;
-        @NotBlank(message = "Name cannot be empty")
         @Column(name="name")
         private String name;
         @Column(name="surname")

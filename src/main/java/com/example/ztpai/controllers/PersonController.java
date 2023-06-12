@@ -1,6 +1,7 @@
 package com.example.ztpai.controllers;
 
 import com.example.ztpai.model.Person;
+import com.example.ztpai.request.PersonLoginRequest;
 import com.example.ztpai.service.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,18 @@ public class PersonController {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Person> login(@Valid @RequestBody PersonLoginRequest loginRequest) {
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
+        Person person = personService.login(email, password);
+        if (person != null) {
+            return ResponseEntity.ok(person);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 }
