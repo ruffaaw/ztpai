@@ -27,6 +27,8 @@ public class Person {
         private String password;
         @Column(name="phone")
         private String phone;
+        @OneToOne(mappedBy = "person")
+        private ShoppingCart shoppingCart;
 
         public Person() {
         }

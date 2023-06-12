@@ -1,9 +1,6 @@
 package com.example.ztpai.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +13,9 @@ public class ShoppingCart {
     private UUID id;
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL)
     private List<CartItem> cartItems;
+    @OneToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
 
     public ShoppingCart() {
     }
@@ -41,17 +41,34 @@ public class ShoppingCart {
         this.cartItems = cartItems;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingCart that = (ShoppingCart) o;
-        return Objects.equals(id, that.id) && Objects.equals(cartItems, that.cartItems);
+        return Objects.equals(id, that.id) && Objects.equals(cartItems, that.cartItems) && Objects.equals(person, that.person);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cartItems);
+        return Objects.hash(id, cartItems, person);
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "id=" + id +
+                ", cartItems=" + cartItems +
+                ", person=" + person +
+                '}';
     }
 }
 
