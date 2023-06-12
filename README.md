@@ -20,6 +20,7 @@ Website for people who want to buy electronic equipment.
 - Git
 
 ## Screenshots
-
+![Login Page](./screens/login.png)
+![Smartphones Page](./screens/smartphones.png)
 ## Team
 - Rafał Ciupek
