@@ -100,10 +100,6 @@ body {
     margin-left: 10px;
   }
 
-  .headerContainer {
-    margin-top: 30px;
-  }
-
   .cartItemDetails,
   .product {
     display: flex;
@@ -113,7 +109,7 @@ body {
   }
 
   .cartItems {
-    width: 600px;
+    width: 100%;
   }
   .cartDetails {
     display: flex;

@@ -155,13 +155,17 @@ body {
 }
 
 @media (max-width: 600px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
   .deliveryInformation,
   .searchProduct {
     display: none;
   }
 
   .categoriesContainer {
-    width: 200px;
+    width: 150px;
     height: 160px;
   }
 
@@ -182,6 +186,32 @@ body {
   }
 
   .categoriesButton {
-    width: 100px;
+    width: 60px;
+  }
+
+  .logoNameContainer > img,
+  .logoNameContainer {
+    width: 200px;
+    height: 90px;
+  }
+
+  .headerBarContainer {
+    margin-top: 0px;
+  }
+
+  .shoppingCartButton {
+    margin-left: 60px;
+  }
+
+  .logoutButton {
+    margin-left: 20px;
+  }
+
+  .categoriesProductsIcon {
+    margin-left: 30px;
+  }
+
+  .categoriesIcon {
+    margin-left: 20px;
   }
 }

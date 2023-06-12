@@ -92,7 +92,7 @@ body {
   .mainContainer {
     display: flex;
     flex-direction: row;
-    width: 600px;
+    width: 100%;
   }
 
   .productsContainer {
