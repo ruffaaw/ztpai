@@ -19,8 +19,13 @@ Website for people who want to buy electronic equipment.
 - PostgresSQL
 - Git
 
-## Screenshots
-![Login Page](./screens/login.png)
-![Smartphones Page](./screens/smartphones.png)
 ## Team
 - Rafał Ciupek
+
+## Screenshots
+![Login Page](./screens/login.png)
+![Login Page Mobile](./screens/login-mobile.png)
+![Sign Up Page](./screens/signup.png)
+![Smartphones Page](./screens/smartphones.png)
+![Shopping Cart Page](./screens/shopping-cart-with-products.png)
+![Shopping Cart Empty Page](./screens/shopping-cart-empty.png)
